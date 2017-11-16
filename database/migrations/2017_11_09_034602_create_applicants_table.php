@@ -19,10 +19,18 @@ class CreateApplicantsTable extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('contact_info_id');
             $table->integer('skills');
             $table->integer('experience');
             $table->boolean('can_relocate');
+
+            $table->string('address_line_1');
+            $table->string('address_line_2');
+            $table->string('address_line_3')->nullable($value = true);
+            $table->string('city');
+            $table->integer('zip');
+            $table->string('state');
+            $table->string('phone');
+            $table->string('email');
         });
     }
 
