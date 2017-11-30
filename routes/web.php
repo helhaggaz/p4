@@ -11,6 +11,38 @@
 |
 */
 
+/**
+* Jobs
+*/
+# Create a job
+#Route::get('/job/create', 'JobController@create');
+#Route::post('/job', 'jobController@store');
+
+# Edit a job
+#Route::get('/job/{id}/edit', 'JobController@edit');
+#Route::put('/job/{id}', 'JobController@update');
+
+# Delete a job
+#Route::get('/job/{id}/delete', 'JobController@confirmDeletion');
+#Route::delete('/job/{id}', 'JobController@delete');
+
+# View all jobs
+Route::get('/job', 'JobController@index');
+
+# View a job
+Route::get('/job/{id}', 'JobController@show');
+
+# Search all jobs
+#Route::get('/search', 'JobController@search');
+
+/**
+* Homepage
+*/
+Route::get('/', 'WelcomeController');
+
+/**
+* Debug
+*/
 Route::get('/debug', function () {
 
     $debug = [
@@ -36,9 +68,4 @@ Route::get('/debug', function () {
     }
 
     dump($debug);
-});
-
-
-Route::get('/', function () {
-    return view('index');
 });
