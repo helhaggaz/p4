@@ -5,7 +5,7 @@
 
       <h1> Careers <h1>
       <p>
-          Foobooks is simple book organizer, used to catalog all your favorite reads.
+          Simple jobs portal, used to match applicants to available jobs and jobs to applicants profiles.
       </p>
       <p>
           Choose a feature above to get started.
