@@ -36,7 +36,7 @@
                 </div>
             @endif
             <!-- Initialize Chosen plugin: -->
-            <script type="text/javascript">
+            <script>
                 $(".chosen-select").chosen({
                   no_results_text: 'Oops, nothing found!',
                 });
