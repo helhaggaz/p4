@@ -15,16 +15,16 @@
 * Jobs
 */
 # Create a job
-#Route::get('/job/create', 'JobController@create');
-#Route::post('/job', 'jobController@store');
+Route::get('/job/create', 'JobController@create');
+Route::post('/job', 'JobController@store');
 
 # Edit a job
-#Route::get('/job/{id}/edit', 'JobController@edit');
-#Route::put('/job/{id}', 'JobController@update');
+Route::get('/job/{id}/edit', 'JobController@edit');
+Route::put('/job/{id}', 'JobController@update');
 
 # Delete a job
-#Route::get('/job/{id}/delete', 'JobController@confirmDeletion');
-#Route::delete('/job/{id}', 'JobController@delete');
+Route::get('/job/{id}/delete', 'JobController@confirmDeletion');
+Route::delete('/job/{id}', 'JobController@delete');
 
 # View all jobs
 Route::get('/job', 'JobController@index');
@@ -32,8 +32,32 @@ Route::get('/job', 'JobController@index');
 # View a job
 Route::get('/job/{id}', 'JobController@show');
 
+# Matching applicants
+Route::get('/job/matchingapplicants/{id}', 'JobController@matchingapplicants');
+
+/**
+* Jobs
+*/
+# Create a applicant
+Route::get('/applicant/create', 'ApplicantController@create');
+Route::post('/applicant', 'ApplicantController@store');
+
+# Edit a applicapplicantant
+Route::get('/applicant/{id}/edit', 'ApplicantController@edit');
+Route::put('/applicant/{id}', 'ApplicantController@update');
+
+# Delete a applicant
+Route::get('/applicant/{id}/delete', 'ApplicantController@confirmDeletion');
+Route::delete('/applicant/{id}', 'ApplicantController@delete');
+
+# View all applicants
+Route::get('/applicant', 'ApplicantController@index');
+
+# View a applicant
+Route::get('/applicant/{id}', 'ApplicantController@show');
+
 # Search all jobs
-#Route::get('/search', 'JobController@search');
+Route::get('/applicant/matchingjobs/{id}', 'ApplicantController@matchingjobs');
 
 /**
 * Homepage

@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateSkillsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('skills', function (Blueprint $table) {

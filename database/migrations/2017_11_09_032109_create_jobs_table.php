@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateJobsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
@@ -19,10 +14,8 @@ class CreateJobsTable extends Migration
 
             $table->string('title');
             $table->string('description')->nullable($value = true);
-            $table->integer('category_id');
             $table->boolean('only_local');
             $table->integer('min_exp');
-            $table->integer('skills');
         });
     }
 

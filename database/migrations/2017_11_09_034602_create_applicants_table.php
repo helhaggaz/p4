@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateApplicantsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('applicants', function (Blueprint $table) {
@@ -19,7 +14,6 @@ class CreateApplicantsTable extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('skills');
             $table->integer('experience');
             $table->boolean('can_relocate');
 

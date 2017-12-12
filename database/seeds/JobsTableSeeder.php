@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Job;
+use App\Category;
 
 class JobsTableSeeder extends Seeder
 {
@@ -13,22 +14,22 @@ class JobsTableSeeder extends Seeder
     public function run()
     {
       $jobs = [
-          ['Application Developer I', 'Java and PHP Programmer, Level 1', 1, 0, 7, 1],
-    ['Accountant II', 'Jonior Accountant', 2, 0, 1, 2],
+          ['Application Developer I', 'Java and PHP Programmer, Level 1', 'Information Technology', 0, 7],
+          ['Accountant II', 'Jonior Accountant', 'Finance and Accounting', 0, 1],
       ];
 
       $count = count($jobs);
 
       foreach ($jobs as $key => $job) {
+          $category_id = Category::where('name', '=', $job[2])->pluck('id')->first();
           Job::insert([
               'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
               'updated_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
               'title' => $job[0],
               'description' => $job[1],
-              'category_id' => $job[2],
+              'category_id' => $category_id,
               'only_local' => $job[3],
-      'min_exp' => $job[4],
-              'skills' => $job[5]
+              'min_exp' => $job[4]
           ]);
           $count--;
       }

@@ -1,23 +1,24 @@
 @extends('layouts.master')
 
-@push('head')
-    <link href='/css/book/show.css' rel='stylesheet'>
-@endpush
-
 @section('title')
     {{ $job->title }}
 @endsection
 @section('content')
-
-    <h2>{{  $job->title }}</h2>
-    <p>Description: {{ $job['description'] }}</p>
-    <p>Category: {{ $job['name'] }}</p>
-    <p>Require relocation: {{ $job['only_local'] }}</p>
-    <p>Minimum experience: {{ $job['min_exp'] }} years</p>
-    <p>Minimum experience: {{ $job['skills'] }}</p>
-    <a href='/job/{{ $job['id'] }}'>View</a> |
-    <a href='/job/{{ $job['id'] }}/edit'>Edit</a> |
-    <a href='/job/{{ $job['id'] }}/delete'>Delete</a>
-
+    <div class="container">
+        <h2>{{  $job->title }}</h2>
+        <br>
+        <p><h4>Description:</h4> {{ $job['description'] }}</p>
+        <p><h4>Category:</h4> {{ $job['category'] }}</p>
+        <p><h4>Require relocation:</h4> {{ $requireRelocation }}</p>
+        <p><h4>Minimum experience:</h4> {{ $minmumExperience }}</p>
+        <p><h4>Required Skills:</h4>
+          @for($x=0;$x<count($job['skills']);$x++)
+            <ul>{{$job['skills'][$x]['name'] }}</ul>
+            @endfor
+        </p>
+        <a href='/job'>Go back to Jobs list</a> |
+        <a href='/job/{{ $job['id'] }}/edit'>Edit</a> |
+        <a href='/job/{{ $job['id'] }}/delete'>Delete</a>
+    </div>
 
 @endsection

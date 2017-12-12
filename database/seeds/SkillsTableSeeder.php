@@ -14,6 +14,18 @@ class SkillsTableSeeder extends Seeder
     {
       $skills = [
           ['Java'],
+		      ['PHP'],
+          ['SQL'],
+		      ['Networking'],
+		      ['Security'],
+		      ['LDAP Administration'],
+		      ['Management'],
+		      ['Comunication'],
+		      ['Leadership'],
+		      ['Chinese Language'],
+		      ['English Language'],
+		      ['Finance'],
+		      ['Procurement'],
 		      ['Income Tax'],
       ];
 

@@ -1,42 +1,58 @@
 @extends('layouts.master')
 
 @section('title')
-    Edit book {{ $book->title }}
+    Edit job {{ $job->title }}
 @endsection
 
 @section('content')
 
-    <h1>Edit book {{ $book->title }} </h1>
+    <h1>Edit job {{ $job->title }} </h1>
+    <div class="container">
+        <form method='POST' action='/job/{{ $job->id }}'>
 
-    <form method='POST' action='/book/{{ $book->id }}'>
+            {{ method_field('put') }}
 
-        {{ method_field('put') }}
+            {{ csrf_field() }}
 
-        {{ csrf_field() }}
-
-        <div class='details'>* Required fields</div>
-
-        <label for='title'>* Title</label>
-        <input type='text' name='title' id='title' value='{{ old('title', $book->title) }}'>
-        @include('modules.error-field', ['fieldName' => 'title'])
-
-        <label for='author'>* Author</label>
-        <input type='text' name='author' id='author' value='{{ old('author', $book->author) }}'>
-        @include('modules.error-field', ['fieldName' => 'author'])
-
-        <label for='published'>* Published Year (YYYY)</label>
-        <input type='text' max='4' name='published' id='published' value='{{ old('published', $book->published) }}'>
-        @include('modules.error-field', ['fieldName' => 'published'])
-
-        <label for='cover'>* Cover URL </label>
-        <input type='text' max='4' name='cover' id='cover' value='{{ old('cover', $book->cover) }}'>
-        @include('modules.error-field', ['fieldName' => 'cover'])
-
-        <label for='purchase_link'>* Purchase URL </label>
-        <input type='text' max='4' name='purchase_link' id='purchase_link' value='{{ old('purchase_link', $book->purchase_link) }}'>
-        @include('modules.error-field', ['fieldName' => 'purchase_link'])
-        
-        <input type='submit' value='Save changes' class='btn btn-primary btn-small'>
-    </form>
-
+            <div class='details'>* Required fields</div>
+            <div class='form-group'>
+                <label for='title'>* Title</label>
+                <input type='text' name='title' id='title' value='{{ old('title', $job->title) }}'>
+                @include('modules.error-field', ['fieldName' => 'title'])
+            </div>
+            <div class='form-group'>
+                <label for='description'>Description</label>
+                <textarea class='form-control' rows='5'  name='description' id='description' >{{ old('description', $job->description) }}</textarea>
+                @include('modules.error-field', ['fieldName' => 'description'])
+            </div>
+            <div class='form-group'>
+                <label for='only_local'><input type='checkbox' name='only_local' id='only_local' {{ (old('only_local', $job->only_local)==1) ? 'checked' : ''}}> Only Local Applicants</label>
+                @include('modules.error-field', ['fieldName' => 'only_local'])
+            </div>
+            <div class='form-group'>
+                <label for='min_exp'>* Minimum years of Experience </label>
+                <input type='text' max='3' name='min_exp' id='min_exp' value='{{ old('min_exp', $job->min_exp) }}'>
+                @include('modules.error-field', ['fieldName' => 'min_exp'])
+            </div>
+            <div class='form-group'>
+                <label for='category'>* Job Category </label>
+                <select name='category' id='category'>
+                    <option value='' selected='selected' disabled='disabled'>Choose one...</option>
+                    @foreach($categoriesForDropdown as $id => $name)
+                        <option value='{{ $id }}' {{ (isset($job) and $id == $job->category->id) ? 'SELECTED' : '' }}>{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class='form-group'>
+                <label for='skills'>* Required Skills </label>
+                <select class='form-control chosen-select'  multiple name='skills[]' id='skills'>
+                    @foreach($skillsForChosenSelect as $id => $name)
+                        <option value='{{ $id }}' {{ (isset($skillIdsForThisJob) and in_array($id,$skillIdsForThisJob)) ? 'SELECTED' : '' }}>{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <input type='submit' value='Save changes' class='btn btn-primary btn-small'>
+            <input type="button" value='Cancel' class='btn btn-primary btn-small' onclick="history.back();" />
+        </form>
+    </div>
 @endsection
