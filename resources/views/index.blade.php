@@ -1,6 +1,6 @@
 
   @extends('layouts.master')
-
+      <h1> Careers <h1>
   @section('content')
 
       <p>
